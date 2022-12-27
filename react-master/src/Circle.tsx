@@ -34,3 +34,5 @@ const sayHello = (playerObj: PlayerShape) => `Hello ${playerObj.name} you are ${
 
 sayHello({name: 'Kate', age: 30});
 sayHello({name: 'Jane', age: 28, countey: 'us'}) //[Error] Argument of type '{ name: string; age: number; countey: string; }' is not assignable to parameter of type 'PlayerShape'. Object literal may only specify known properties, and 'countey' does not exist in type 'PlayerShape'.ts(2345)
+
+//git test
