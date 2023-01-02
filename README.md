@@ -1,10 +1,10 @@
-# ReactJS Master Project
+# ReactJS Master Project💻
 
 
-## Class
-- [ ] #1 INTRODUCTION
-- [ ] #2 STYLED COMPONENTS
-- [ ] #3 TYPESCRIPT
+## Class ☑
+- [x] #1 INTRODUCTION
+- [x] #2 STYLED COMPONENTS
+- [x] #3 TYPESCRIPT
 - [ ] #4 REACT ROUTER V6
 - [ ] #5 CRYPTO TRACKER
 - [ ] #7 TRELLO CLONE
