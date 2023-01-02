@@ -33,10 +33,19 @@ const value = event.currentTarget.value;
 const tagName = event.currentTarget.tagName;
 const width = event.currentTarget.width;
 const id = event.currentTarget.id;
-
-위 코드를 아래처럼 작성 가능/
+// 위 코드를 아래처럼 작성 가능
 
 const {
 currentTarget: {value, tagName, width, id}
 } = event;
+
+// 이렇게도 작성 가능
+const { value } = event.currentTarget;
+
+// 추가로 event 안에 있는 속성만 가져와 변수를 만들려고 한다면 아래 처럼 작성 하면 된다.
+const { x, y } = event; 
+
+
+https://reactjs.org/docs/events.html
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/Destructuring_assignment
 */
