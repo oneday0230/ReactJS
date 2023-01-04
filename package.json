@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@types/react-query": "^1.2.9"
+  }
+}

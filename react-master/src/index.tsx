@@ -8,7 +8,7 @@ import { darkTheme, lightTheme } from './theme';
 const root = ReactDOM.createRoot(document.getElementById('root') as Element);
 root.render(
   <React.StrictMode>
-    <ThemeProvider theme={darkTheme}>
+    <ThemeProvider theme={lightTheme}>
       <App></App>
     </ThemeProvider>
   </React.StrictMode>
