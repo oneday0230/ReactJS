@@ -40,6 +40,7 @@ const GlobalStyle = createGlobalStyle`
   }
   a {
     text-decoration: none;
+    color: inherit;
   }
   menu, ol, ul {
     list-style: none;
