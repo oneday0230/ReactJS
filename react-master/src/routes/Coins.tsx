@@ -2,24 +2,24 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 
-const Container = styled.div`
+export const Container = styled.div`
     padding: 0 20px;
     max-width: 480px;
     margin: 0 auto;
 `;
-const Header = styled.header`
+export const Header = styled.header`
     height: 15vh;
     display: flex;
     justify-content: center;
     align-items: center;
     margin: 20px 0;
 `;
-const Title = styled.h1`
+export const Title = styled.h1`
     font-size: 48px;
     margin: 40px 0;
     color: ${props => props.theme.accentColor};
 `;
-const Loader = styled.div`
+export const Loader = styled.div`
     text-align: center;
     margin-top: 60px;
 `;
@@ -40,6 +40,16 @@ const Coin = styled.li`
         color: ${props => props.theme.accentColor};
     }
    }
+`;
+const CoinWrapper = styled.div`
+   display: flex;
+   justify-content: left;
+   align-items: center;
+`;
+const Image = styled.img`
+    width: 35px;
+    height: 35px;
+    margin-right: 12px;
 `;
 
 interface CoinInterface {
@@ -77,7 +87,15 @@ function Coins()
                     <CoinsList>
                         {coins.map(coin => (
                             <Coin key={coin.id}>
-                                <Link to={`/${coin.id}`}>{coin.name} &rarr;</Link>
+                                <Link to={{
+                                    pathname: `/${coin.id}`,
+                                    state: {name: coin.name}
+                                }}>
+                                    <CoinWrapper>
+                                        <Image src={`https://cryptocurrencyliveprices.com/img/${coin.id}.png`}/>
+                                        {coin.name} &rarr;
+                                    </CoinWrapper>
+                                </Link>
                             </Coin>
                         ))}
                     </CoinsList>
