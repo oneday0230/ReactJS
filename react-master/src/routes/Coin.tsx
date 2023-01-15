@@ -1,4 +1,4 @@
-import { Route, Switch, useLocation, useParams } from "react-router-dom";
+import { Link, Route, Switch, useLocation, useParams, useRouteMatch } from "react-router-dom";
 import { Container, Header, Title, Loader } from "./Coins";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
@@ -22,6 +22,7 @@ const OverviewItem = styled.div`
     font-weight: 400;
     text-transform: uppercase;
     margin-bottom: 5px;
+    opacity: 0.6;
   }
 `;
 const Description = styled.p`
@@ -29,6 +30,26 @@ const Description = styled.p`
   line-height: 1.2;
   padding: 12px;
   text-align: center;
+`;
+const Tabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  margin: 25px 0px;
+  gap: 10px;
+`;
+
+const Tab = styled.span<{isActivce: boolean}>`
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 13px;
+  font-weight: 600;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 16px 0px;
+  border-radius: 10px;
+  color: ${props => props.isActivce ? props.theme.accentColor : props.theme.textColor};
+  a {
+    display: block;
+  }
 `;
 
 interface RouteParams {
@@ -97,6 +118,8 @@ function Coin() {
   const { state } = useLocation<RouteState>();
   const [info, setInfo] = useState<InfoData>();
   const [priceInfo, setPriceInfo] = useState<PriceData>();
+  const chartMatch = useRouteMatch("/:coinId/chart");   // 해당 Url에 있다면 useRouteMatch가 알려준다.
+  const priceMatch = useRouteMatch("/:coinId/price"); 
 
   useEffect(() => {
     (async () => {
@@ -149,12 +172,23 @@ function Coin() {
               <span>{priceInfo?.max_supply}</span>
             </OverviewItem>
           </Overview>
+
+          <Tabs>
+            <Tab isActivce={chartMatch !== null}>
+              {/* a 태그 대신 Link를 사용하여 다른 화면은 re-rendering 되지 않도록 처리했다. */}
+              <Link to={`/${coinId}/chart`}>Chart</Link>
+            </Tab>
+            <Tab isActivce={priceMatch !== null}>
+              <Link to={`/${coinId}/price`}>Price</Link>
+            </Tab>
+          </Tabs>
+
           {/* Tabs -> Route 설정하여 주소로 각 tab page에 접근할 수 있도록 했다.*/}
           <Switch>
-            <Route path={`/${coinId}/price`}>
+            <Route path={`/:coinId/price`}>
               <Price></Price>
             </Route>
-            <Route path={`/${coinId}/chart`}>
+            <Route path={`/:coinId/chart`}>
               <Chart></Chart>
             </Route>
           </Switch>
